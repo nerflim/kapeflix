@@ -1,7 +1,7 @@
 <template>
 	<v-navigation-drawer permanent dark mini-variant app right color="grey darken-4">
 		<v-list>
-			<v-list-item-group v-model="model" color="brown lighten-3">
+			<v-list-item-group v-model="model" color="brown lighten-1">
 				<v-list-item v-for="(item, i) in items" :key="i">
 					<v-list-item-icon>
 						<v-icon v-text="item.icon"></v-icon>
