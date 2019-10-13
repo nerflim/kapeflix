@@ -1,23 +1,5 @@
 <template>
-  <v-row no-gutters class="grey darken-4 white--text" style="height: 100%">
-    <v-col cols="12" sm="7" class="pa-5" v-if="!activeMenu"></v-col>
-    <v-col cols="12" sm="7" class="pa-5" v-else>
-      <p class="font-thin title" v-text="activeMenu.name"></p>
-
-      <!-- menu -->
-      <v-row>
-        <v-col
-          cols="12"
-          sm="3"
-          v-for="(item, index) in activeMenu.items"
-          :key="index"
-          class="text-center"
-        >
-          <v-img :src="item.img"></v-img>
-          <p v-text="item.name" class="font-weight-light"></p>
-        </v-col>
-      </v-row>
-    </v-col>
+  <v-row no-gutters class="grey darken-4 white--text flex-row-reverse" style="height: 100%">
     <v-col cols="12" sm="5" class="grey darken-3 elevation-5">
       <div class="pa-5">
         <p class="headline">Menu</p>
@@ -29,7 +11,8 @@
             <v-row>
               <v-col
                 cols="12"
-                sm="4"
+                md="6"
+                lg="4"
                 v-for="(item, i) in menu.items"
                 :key="i"
                 class="font-weight-light body-2"
@@ -37,10 +20,11 @@
                 <v-btn
                   v-text="item.name"
                   color="brown lighten-2"
-                  active-class="brown lighten-2 brown--text text--darken-4"
+                  active-class="brown lighten-2 brown--text text--darken-4 text-left"
                   text
                   depressed
                   tile
+                  block
                   type="button"
                   :value="item.name"
                 ></v-btn>
@@ -51,18 +35,32 @@
           <v-divider light class="my-5" />
         </div>
       </div>
+    </v-col>
+    <v-col cols="12" sm="7" class="pa-5" v-if="!activeMenu"></v-col>
+    <v-col cols="12" sm="7" class="pa-5" v-else>
+      <p class="font-thin title" v-text="activeMenu.name"></p>
 
-      <NavBar />
+      <!-- menu -->
+      <v-row>
+        <v-col
+          cols="6"
+          md="3"
+          sm="4"
+          v-for="(item, index) in activeMenu.items"
+          :key="index"
+          class="text-center"
+        >
+          <v-img :src="item.img"></v-img>
+          <p v-text="item.name" class="font-weight-light"></p>
+        </v-col>
+      </v-row>
     </v-col>
   </v-row>
 </template>
 
 
 <script>
-import NavBar from './Nav';
-
 export default {
-  components: { NavBar },
   data: () => ({
     active: null,
     menus: [
@@ -109,18 +107,36 @@ export default {
                 img: '/assets/blended-coffee/whitechocolatemochafrapp.png'
               }
             ]
+          },
+          {
+            name: 'Blended Cream',
+            items: [
+              {
+                name: 'Chai Frappuccino',
+                img: '/assets/blended-cream/chaifrapp.png'
+              },
+              {
+                name: 'Double Chocolate Chip Frappuccino',
+                img: '/assets/blended-cream/doublechocchipfrapp.png'
+              },
+              {
+                name: 'Green Tea Frappuccino',
+                img: '/assets/blended-cream/greenteafrapp.png'
+              },
+              {
+                name: 'Strawberries & Creme Frappuccino',
+                img: '/assets/blended-cream/strawberriescreamfrapp.png'
+              },
+              {
+                name: 'Vanilla Frappuccino',
+                img: '/assets/blended-cream/vanillafrapp.png'
+              },
+              {
+                name: 'White Chocolate Frappuccino',
+                img: '/assets/blended-cream/whitechocolatemochafrapp.png'
+              }
+            ]
           }
-          // {
-          //   name: 'Blended Cream',
-          //   items: [
-          //     'Chai Frappuccino',
-          //     'Double Chocolate Chip Frappuccino',
-          //     'Green Tea Frappuccino',
-          //     'Strawberries & Creme Frappuccino',
-          //     'Vanilla Frappuccino',
-          //     'White Chocolate Frappuccino'
-          //   ]
-          // },
           // {
           //   name: 'Iced Beverages',
           //   items: [
