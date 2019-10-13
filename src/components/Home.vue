@@ -11,8 +11,11 @@
           sm="3"
           v-for="(item, index) in activeMenu.items"
           :key="index"
-          v-text="item"
-        ></v-col>
+          class="text-center"
+        >
+          <v-img :src="item.img"></v-img>
+          <p v-text="item.name" class="font-weight-light"></p>
+        </v-col>
       </v-row>
     </v-col>
     <v-col cols="12" sm="5" class="grey darken-3 elevation-5">
@@ -22,7 +25,7 @@
         <!-- menu -->
         <div v-for="(menu, index) in menus" :key="index">
           <p class="font-regular subtitle-1" v-text="menu.name"></p>
-          <v-btn-toggle group dark v-model="active">
+          <v-btn-toggle group dark v-model="active" class="d-flex">
             <v-row>
               <v-col
                 cols="12"
@@ -68,115 +71,158 @@ export default {
         items: [
           {
             name: 'Blended Coffee',
-            items: ['Lattè', 'Mocha', 'Caramel', 'Java Chip', 'Coffee Jelly']
-          },
-          {
-            name: 'Blended Cream',
             items: [
-              'Chocolate',
-              'Chocolate Chip',
-              'Vanilla',
-              "Cookies n' Cream",
-              'Green Tea Matcha',
-              'Mango',
-              'Banana',
-              "Strawberries n' Cream",
-              'Berry Mango'
+              {
+                name: 'Caramel Frappuccino',
+                img: '/assets/blended-coffee/caramelfrapp.png'
+              },
+              {
+                name: 'Coffee Frappuccino',
+                img: '/assets/blended-coffee/coffeefrapp.png'
+              },
+              {
+                name: 'Dark Mocha Frappuccino',
+                img: '/assets/blended-coffee/darkmochafrapp.png'
+              },
+              {
+                name: 'Espresso Frappuccino',
+                img: '/assets/blended-coffee/espressofrapp.png'
+              },
+              {
+                name: 'Java Chip Frappuccino',
+                img: '/assets/blended-coffee/javachipfrapp.png'
+              },
+              {
+                name: 'Mocha Frappuccino',
+                img: '/assets/blended-coffee/mochafrapp.png'
+              },
+              {
+                name: 'Triple Mocha Frappuccino',
+                img: '/assets/blended-coffee/triplemocha.png'
+              },
+              {
+                name: 'Ultra Caramel Frappuccino',
+                img: '/assets/blended-coffee/ultracaramel.png'
+              },
+              {
+                name: 'White Chocolate Mocha Frappuccino',
+                img: '/assets/blended-coffee/whitechocolatemochafrapp.png'
+              }
             ]
-          },
-          {
-            name: 'Blended Fruit',
-            items: ['Mango Passion Fruit', 'Lemon Raspberry']
-          },
-          {
-            name: 'Tea Latté',
-            items: ['Hot or Iced', 'Green Tea Latté', 'Black Tea Latté']
-          },
-          {
-            name: 'Tea',
-            items: [
-              'Chamomile',
-              'Peppermint',
-              'Chocolate Mint',
-              'Cranberry',
-              'Black Tea',
-              'Green Tea'
-            ]
-          },
-          {
-            name: 'Iced Tea',
-            items: ['Strawberry', 'Lemon']
-          },
-          {
-            name: 'Fine Salt & Cheese',
-            items: ['Milk Tea', 'Green Tea Matcha', 'Chocolate', 'Dark Mocha']
-          },
-          {
-            name: 'Espresso',
-            items: [
-              'Espresso',
-              'Espresso Macchiato',
-              'Espresso con Panna',
-              'Flat White',
-              'Capuccino',
-              'Caffè Latté',
-              'Caffè Mocha',
-              'Caramel Macchiato',
-              'White Chocolate Mocha',
-              'Caffè Americano'
-            ]
-          },
-          {
-            name: 'Brewed Coffee',
-            items: ['Brewed Coffee', 'Caffè con Leche']
           }
-        ]
-      },
-      {
-        name: 'Food',
-        items: [
-          {
-            name: 'Chocolate',
-            items: ['Signature Chocolate', 'Signature White Chocolate']
-          },
-          {
-            name: 'Breads',
-            items: [
-              'Blueberry Ensaymada',
-              'Caramel Cinnamon Roll',
-              'Choco Kitkat Doughnut',
-              'Chocolate Chip Doughnut',
-              'Dark Almond Doughnut',
-              'White Almond Doughnut',
-              'White Oreo Doughnut',
-              "Corned Beef n' Cheese Roll",
-              'Cheezy Pork Floss'
-            ]
-          },
-          {
-            name: 'Cakes',
-            items: [
-              'Blueberry Cheesecake',
-              'Choco Ferrero Cheesecake',
-              'Choco Oreo Cheesecake',
-              'Classic Chocolate Cake',
-              'Dark Chocolate Cake',
-              'Green Tea Creamcake',
-              'Matcha Cheesecake',
-              'Italian Tiramisu',
-              'Oreo Cheesecake',
-              'Perfect Chocolate Torte',
-              'Red Velvet Cake',
-              'Sans Rival',
-              'Strawberry Cheesecake'
-            ]
-          },
-          {
-            name: 'Pastries',
-            items: ['Cheezy Banana Loaf', 'Choco Melt Loaf', 'Oatmeal Cookies']
-          }
+          // {
+          //   name: 'Blended Cream',
+          //   items: [
+          //     'Chai Frappuccino',
+          //     'Double Chocolate Chip Frappuccino',
+          //     'Green Tea Frappuccino',
+          //     'Strawberries & Creme Frappuccino',
+          //     'Vanilla Frappuccino',
+          //     'White Chocolate Frappuccino'
+          //   ]
+          // },
+          // {
+          //   name: 'Iced Beverages',
+          //   items: [
+          //     'Cold Brew',
+          //     'Cold Brew Latte',
+          //     'Dark Caramel Cold Foam Nitro',
+          //     'Iced Americano',
+          //     'Iced Caffè Mocha',
+          //     'Iced Cappuccino',
+          //     'Iced Caramel Macchiato',
+          //     'Iced Green Tea Latte',
+          //     'Iced Latte',
+          //     'Iced Shaken Lemon Tea',
+          //     'Iced Shaken Tea',
+          //     'Mango Passionfruit Blended Juice',
+          //     'Raspberry Blackcurrant Blended Juice',
+          //     'Vanilla Sweet Cream Cold Brew'
+          //   ]
+          // },
+          // {
+          //   name: 'Coffee & Espresso',
+          //   items: [
+          //     'Brewed Coffee',
+          //     'Caffè Americano',
+          //     'Caffè Latte',
+          //     'Caffè Misto',
+          //     'Caffè Mocha',
+          //     'Cappuccino',
+          //     'Caramel Macchiato',
+          //     'Caramel Mocha',
+          //     'Espresso',
+          //     'Espresso Con Panna',
+          //     'Espresso Macchiato',
+          //     'Flat White',
+          //     'Pumpkin Spice Latte',
+          //     'White Chocolate Mocha'
+          //   ]
+          // },
+          // {
+          //   name: 'Tea & Chocolate',
+          //   items: [
+          //     'Caramel Signature Hot Chocolate',
+          //     'Chai Tea',
+          //     'Chai Tea Latte',
+          //     'Classic Hot Chocolate',
+          //     'Earl Grey Tea',
+          //     "Emperor's Cloud and Mist Green Tea",
+          //     'English Breakfast Tea',
+          //     'English Breakfast Tea Latte',
+          //     'Green Tea Latte',
+          //     'Mint Blend Herbal Infusion',
+          //     'Signature Hot Chocolate',
+          //     'White Hot Chocolate'
+          //   ]
+          // }
         ]
       }
+      // {
+      //   name: 'Food',
+      //   items: [
+      //     {
+      //       name: 'Chocolate',
+      //       items: ['Signature Chocolate', 'Signature White Chocolate']
+      //     },
+      //     {
+      //       name: 'Breads',
+      //       items: [
+      //         'Blueberry Ensaymada',
+      //         'Caramel Cinnamon Roll',
+      //         'Choco Kitkat Doughnut',
+      //         'Chocolate Chip Doughnut',
+      //         'Dark Almond Doughnut',
+      //         'White Almond Doughnut',
+      //         'White Oreo Doughnut',
+      //         "Corned Beef n' Cheese Roll",
+      //         'Cheezy Pork Floss'
+      //       ]
+      //     },
+      //     {
+      //       name: 'Cakes',
+      //       items: [
+      //         'Blueberry Cheesecake',
+      //         'Choco Ferrero Cheesecake',
+      //         'Choco Oreo Cheesecake',
+      //         'Classic Chocolate Cake',
+      //         'Dark Chocolate Cake',
+      //         'Green Tea Creamcake',
+      //         'Matcha Cheesecake',
+      //         'Italian Tiramisu',
+      //         'Oreo Cheesecake',
+      //         'Perfect Chocolate Torte',
+      //         'Red Velvet Cake',
+      //         'Sans Rival',
+      //         'Strawberry Cheesecake'
+      //       ]
+      //     },
+      //     {
+      //       name: 'Pastries',
+      //       items: ['Cheezy Banana Loaf', 'Choco Melt Loaf', 'Oatmeal Cookies']
+      //     }
+      //   ]
+      // }
     ]
   }),
   computed: {
