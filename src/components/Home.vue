@@ -14,7 +14,7 @@
               lg="4"
               v-for="(item, i) in menu.items"
               :key="i"
-              class="font-weight-light body-2"
+              class="font-weight-light"
             >
               <v-btn
                 v-text="item.name"
@@ -23,6 +23,7 @@
                 depressed
                 tile
                 block
+                large
                 type="button"
                 @click="setActiveMenu(item.id)"
               ></v-btn>
@@ -38,11 +39,11 @@
       <p class="font-thin title" v-text="activeMenu.name"></p>
 
       <!-- menu -->
-      <v-scale-transition origin="center center">
-        <Active :item="activeItem" v-if="activeItem" />
+      <v-scale-transition origin="center center" hide-on-leave>
+        <Active :item="activeItem" v-if="activeItem" @close="activeItemId = null" />
       </v-scale-transition>
 
-      <v-row v-show="!activeItem">
+      <v-row>
         <v-col
           cols="6"
           md="3"
@@ -52,7 +53,13 @@
           class="text-center"
         >
           <v-hover v-slot:default="{ hover }">
-            <v-card flat tile color="transparent" link @click="setActiveItem(item.id)">
+            <v-card
+              flat
+              tile
+              :color="activeItemId === item.id ? 'brown darken-3' : 'transparent'"
+              link
+              @click="setActiveItem(item.id)"
+            >
               <v-img :src="item.img"></v-img>
               <p
                 v-text="item.name"
