@@ -12,6 +12,7 @@
 
         <p>Available sizes:</p>
 
+        <!-- sizes -->
         <v-card class="d-flex flex-row mb-6" tile flat color="transparent">
           <v-btn-toggle v-model="selected" tile color="brown" group>
             <v-btn
@@ -28,7 +29,20 @@
           </v-btn-toggle>
         </v-card>
 
-        <v-btn outlined depressed color="brown">
+        <!-- quantity -->
+        <v-menu offset-y>
+          <template v-slot:activator="{ on }">
+            <v-btn outlined depressed color="brown" large v-on="on" class="mr-5">Qty: {{quantity}}</v-btn>
+          </template>
+          <v-list dark>
+            <v-list-item v-for="(qty, index) in quantities" :key="index" @click="quantity = qty">
+              <v-list-item-title v-text="qty"></v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+
+        <!-- add to cart -->
+        <v-btn outlined depressed large color="brown" :disabled="!quantity">
           Add to cart
           <v-icon right>mdi-cart-outline</v-icon>
         </v-btn>
@@ -50,6 +64,8 @@ export default {
       { name: 'Grande', ml: 473, icon: '' },
       { name: 'Venti', ml: 591, icon: '' }
     ],
+    quantity: 0,
+    quantities: [1, 2, 3, 4, 5],
     selected: null
   })
 };
