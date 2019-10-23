@@ -14,16 +14,17 @@
 
         <!-- sizes -->
         <v-card class="d-flex flex-row mb-6" tile flat color="transparent">
-          <v-btn-toggle v-model="selected" tile color="brown" group>
+          <v-btn-toggle v-model="size" tile color="brown" group>
             <v-btn
-              v-for="(size, i) in sizes"
+              v-for="(sz, i) in sizes"
               :key="i"
               color="brown--text text--lighten-1"
               height="auto"
+              :value="sz.id"
             >
               <div class="pa-2 d-flex flex-column">
-                <p v-text="size.name"></p>
-                <p class="caption mb-0" v-text="size.ml"></p>
+                <p v-text="sz.name"></p>
+                <p class="caption mb-0">{{sz.ml}}mL</p>
               </div>
             </v-btn>
           </v-btn-toggle>
@@ -42,7 +43,7 @@
         </v-menu>
 
         <!-- add to cart -->
-        <v-btn outlined depressed large color="brown" :disabled="!quantity">
+        <v-btn outlined depressed large color="brown" :disabled="!quantity || !size">
           Add to cart
           <v-icon right>mdi-cart-outline</v-icon>
         </v-btn>
@@ -56,17 +57,19 @@
 </template>
 
 <script>
+import uniqid from 'uniqid';
+
 export default {
   props: ['item'],
   data: () => ({
+    size: null,
     sizes: [
-      { name: 'Tall', ml: 354, icon: '' },
-      { name: 'Grande', ml: 473, icon: '' },
-      { name: 'Venti', ml: 591, icon: '' }
+      { id: uniqid(), name: 'Tall', ml: 354, icon: '' },
+      { id: uniqid(), name: 'Grande', ml: 473, icon: '' },
+      { id: uniqid(), name: 'Venti', ml: 591, icon: '' }
     ],
     quantity: 0,
-    quantities: [1, 2, 3, 4, 5],
-    selected: null
+    quantities: [1, 2, 3, 4, 5]
   })
 };
 </script>

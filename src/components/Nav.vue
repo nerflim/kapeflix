@@ -1,42 +1,43 @@
 <template>
-	<v-navigation-drawer permanent dark mini-variant app right color="grey darken-4">
-		<v-list>
-			<v-list-item-group v-model="model" color="brown lighten-1">
-				<v-list-item v-for="(item, i) in items" :key="i">
-					<v-list-item-icon>
-						<v-icon v-text="item.icon"></v-icon>
-					</v-list-item-icon>
-					<v-list-item-content>
-						<v-list-item-title v-text="item.text" />
-					</v-list-item-content>
-				</v-list-item>
-			</v-list-item-group>
-		</v-list>
-	</v-navigation-drawer>
+  <v-navigation-drawer permanent dark mini-variant app right color="grey darken-4">
+    <v-list dense flat>
+      <v-list-item-group v-model="model">
+        <v-list-item color="brown">
+          <v-list-item-icon>
+            <v-badge color="brown">
+              <template v-slot:badge>0</template>
+              <v-icon>mdi-cart-outline</v-icon>
+            </v-badge>
+          </v-list-item-icon>
+          <v-list-item-title>My Files</v-list-item-title>
+        </v-list-item>
+      </v-list-item-group>
+    </v-list>
+  </v-navigation-drawer>
 </template>
 
 <script>
 export default {
-	data: () => ({
-		items: [
-			{
-				icon: 'mdi-inbox',
-				text: 'Inbox'
-			},
-			{
-				icon: 'mdi-star',
-				text: 'Star'
-			},
-			{
-				icon: 'mdi-send',
-				text: 'Send'
-			},
-			{
-				icon: 'mdi-email-open',
-				text: 'Drafts'
-			}
-		],
-		model: 1
-	})
+  data: () => ({
+    items: [
+      {
+        icon: 'mdi-inbox',
+        text: 'Inbox'
+      },
+      {
+        icon: 'mdi-star',
+        text: 'Star'
+      },
+      {
+        icon: 'mdi-send',
+        text: 'Send'
+      },
+      {
+        icon: 'mdi-email-open',
+        text: 'Drafts'
+      }
+    ],
+    model: 1
+  })
 };
 </script>

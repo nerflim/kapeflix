@@ -33,16 +33,19 @@
           <v-divider light class="my-5" />
         </div>
       </div>
+
+      <NavMenu />
     </v-col>
     <v-col cols="12" sm="7" class="pa-5" v-if="!activeMenu"></v-col>
     <v-col cols="12" sm="7" class="pa-5" v-else>
       <p class="font-thin title" v-text="activeMenu.name"></p>
 
-      <!-- menu -->
+      <!-- active menu item -->
       <v-scale-transition origin="center center" hide-on-leave>
         <Active :item="activeItem" v-if="activeItem" @close="activeItemId = null" />
       </v-scale-transition>
 
+      <!-- menu -->
       <v-row>
         <v-col
           cols="6"
@@ -77,10 +80,11 @@
 
 <script>
 import Active from './Active';
+import NavMenu from './Nav';
 import uniqid from 'uniqid';
 
 export default {
-  components: { Active },
+  components: { Active, NavMenu },
   data: () => ({
     active: null,
     activeItemId: null,
