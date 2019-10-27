@@ -34,7 +34,7 @@
         </div>
       </div>
 
-      <NavMenu />
+      <NavMenu :cart="cart" />
     </v-col>
     <v-col cols="12" sm="7" class="pa-5" v-if="!activeMenu"></v-col>
     <v-col cols="12" sm="7" class="pa-5" v-else>
@@ -42,7 +42,12 @@
 
       <!-- active menu item -->
       <v-scale-transition origin="center center" hide-on-leave>
-        <Active :item="activeItem" v-if="activeItem" @close="activeItemId = null" />
+        <Active
+          :item="activeItem"
+          v-if="activeItem"
+          @close="activeItemId = null"
+          @addToCart="addToCart($event)"
+        />
       </v-scale-transition>
 
       <!-- menu -->
@@ -86,6 +91,7 @@ import uniqid from 'uniqid';
 export default {
   components: { Active, NavMenu },
   data: () => ({
+    cart: [],
     active: null,
     activeItemId: null,
     menus: [
@@ -333,6 +339,26 @@ export default {
     setActiveMenu(id) {
       this.active = id;
       this.activeItemId = null;
+    },
+    isExisting(cart, item) {
+      // checks if the item already exist, returns object
+      return cart.filter(
+        cartItem =>
+          cartItem.item.id === item.item.id && cartItem.size.ml === item.size.ml
+      )[0];
+    },
+    addToCart(item) {
+      // if item exist: modify quantity,
+      // else: add item
+      this.cart = this.isExisting(this.cart, item)
+        ? [
+            ...this.cart.map(cartItem =>
+              this.isExisting([cartItem], item)
+                ? { ...cartItem, qty: cartItem.qty + item.qty }
+                : cartItem
+            )
+          ]
+        : [...this.cart, item];
     }
   }
 };

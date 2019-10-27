@@ -43,7 +43,14 @@
         </v-menu>
 
         <!-- add to cart -->
-        <v-btn outlined depressed large color="brown" :disabled="!quantity || !size">
+        <v-btn
+          outlined
+          depressed
+          large
+          color="brown"
+          :disabled="!quantity || !size"
+          @click="addToCart()"
+        >
           Add to cart
           <v-icon right>mdi-cart-outline</v-icon>
         </v-btn>
@@ -70,6 +77,15 @@ export default {
     ],
     quantity: 0,
     quantities: [1, 2, 3, 4, 5]
-  })
+  }),
+  methods: {
+    addToCart() {
+      this.$emit('addToCart', {
+        item: this.item,
+        qty: this.quantity,
+        size: this.sizes.filter(size => size.id === this.size)[0]
+      });
+    }
+  }
 };
 </script>

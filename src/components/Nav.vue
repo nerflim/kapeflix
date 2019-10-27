@@ -5,7 +5,7 @@
         <v-list-item color="brown">
           <v-list-item-icon>
             <v-badge color="brown">
-              <template v-slot:badge>0</template>
+              <template v-slot:badge>{{cart.length}}</template>
               <v-icon>mdi-cart-outline</v-icon>
             </v-badge>
           </v-list-item-icon>
@@ -18,6 +18,7 @@
 
 <script>
 export default {
+  props: ['cart'],
   data: () => ({
     items: [
       {
